@@ -1,0 +1,457 @@
+/* Common Style */
+.body__container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+a {
+    text-decoration: none; /* 텍스트에 줄을 그어주는 속성, a태그의 밑줄을 없애는데 자주 사용 */
+}
+
+/* Float Clearfix Style */
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.float--left {
+    float: left;
+}
+.float--right {
+    float: right;
+}
+
+/* Summary Style */
+.summary {
+}
+.summary__title {
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 18px;
+}
+.summary__description {
+    font-size: 26px;
+    font-weight: 300;
+    color: #676767;
+    line-height: 1.5;
+}
+
+/* Section $ Inner */
+.section {
+    position: relative;
+}
+.section .inner {
+    max-width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box; /* padding or border에 의해 무분별하게 요소가 커지는 것을 방지함 */
+    position: relative;
+}
+
+/* Button Style */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: flex; /* inline 특성을 가진 박스요소 */
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #333;
+}
+.btn:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);
+}
+.btn.btn--primary {
+    border: 1px solid #65b836;
+    color: #fff;
+    background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/* Input-text Style */
+.input--text {
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075);
+    font-size: 16px;
+}
+.input--text:focus {
+    border-color: #51a7e8;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(81, 167, 232, 0.5);
+    /* 가상요소선택자를 통해 다중으로 스타일을 부여 할 수 있음(","를 통해 구분해줌) */
+}
+/* Vender Prefix : 브라우저 업체별 접두사
+   * 정식 자바스크립트 문법은 아니지만 접두사를 붙여 브라우져별로 스타일 적용이 가능함 */
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+} /*크롬*/
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+} /*마이크로소트트사*/
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+} /*파이어폭스*/
+
+/* Header Style */
+header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.75); /* 아래쪽 선 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+    background: #fff;
+}
+header .inner {
+    height: 78px;
+}
+
+header .menu-group {
+    display: flex; /* .menu-group 안에 있는 자식요소들은 기본적으로 수평정렬이 됨 */
+    align-items: center;
+    height: 100%; /* 부모요소인 inner tag의 높이인 78px에서의 가운데를 의미함 */
+}
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    background: url('../img/logo.svg');
+    width: 32px;
+    height: 32px;
+    display: block;
+    text-indent: -9999px; /* 들여쓰기를 해주는 속성, 화면밖으로 a태그의 HTMLinnerText를 보냄으로써 대체 text효과는 유지시킴*/
+}
+
+header .logo a:hover {
+    /* 가상 요소 선택자 */
+    background: url('../img/logo_on.svg');
+}
+
+header .main-menu {
+    display: flex;
+}
+/* a태그는 기본적으로 display요소가 inline임
+ * 그래서 영역 설정이 가능한 block으로 재설정 해줘야함*/
+header .main-menu li a {
+    display: block;
+    padding: 10px; /* 해당 contents의 영역을 10px만큼 확장함 */
+    color: #3c4146;
+}
+
+header .main-menu li a:hover {
+    color: #4078c0;
+}
+
+header .sign-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .btn-group {
+    order: 2; /* order의 순서값이 높을수록 배치가 뒤로 밀림 */
+    display: flex; /* .btn에서 부여한 inline-flex 특성이 해당 btn-group에서는 flex로 재적용되어 띄어쓰기가 없어짐 */
+}
+
+header .btn-group .sign-in {
+    margin-right: 4px;
+}
+
+#search-form {
+    order: 1;
+    margin-right: 10px;
+}
+
+#search {
+    width: 160px;
+    font-size: 14px;
+}
+
+#search + [type='submit'] {
+    /* 같은 상위요소를 공유하는 형제요소를 정의할때 사용하는 방법 */
+    display: none;
+}
+
+header .sub-menu {
+    order: 0;
+    display: flex;
+    margin-right: 14px;
+}
+header .sub-menu li a {
+    padding: 8px;
+    display: block;
+    font-size: 13px;
+    color: #3c4146;
+}
+header .sub-menu li a:hover {
+    color: #4078c0;
+}
+#toggle-btn {
+    display: none;
+    background: url('../img/toggle-btn.svg');
+    width: 18px;
+    height: 24px;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    cursor: pointer;
+    text-indent: -9999px;
+}
+
+/* Visual Style */
+.section--visual {
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat; /* 배경이미지의 중복배치를 막음*/
+    background-position: bottom left;
+    background-size: cover;
+}
+
+.section--visual::before {
+    content: '';
+    position: absolute;
+    /* position을 absolute로 선언하기 위해서는 부소요소의 position이 반드시 정의되어야 함
+     * 실제로 section--visual의 경우 common style에 .section으로 정의되어있음 */
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; /* 4방향으로 크기를 0으로주고 부모요소를 기준으로 배치를하게 되면 세로/가로 100%와 같음 */
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* inner 요소 */
+.section--visual .inner {
+    padding: 160px 0;
+    display: flex; /* 내부의 요소를 수평정렬 하기위해서 flex로 선언 */
+}
+
+.section--visual .summary {
+    flex-grow: 1;
+    flex-basis: 0; /* flex-basis default값은 auto임 */
+    margin-right: 90px;
+}
+
+.section--visual .summary__title {
+    color: #fff;
+    font-size: 54px;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.25), 0 1px 25px rgba(255, 255, 255, 0.5);
+}
+
+.section--visual .summary__description {
+    color: #fff;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.25), 0 1px 25px rgba(241, 236, 236, 0.75);
+}
+
+#sign-form {
+    width: 340px;
+    margin-top: 16px;
+}
+
+#sign-form li {
+    margin-bottom: 17px;
+}
+
+#sign-form li:last-child {
+    /* 가상 요소 선택자 : 마지막 요소는 굳이 bottom에 대한 margin값을 부여할 필요가 없음 */
+    margin-bottom: 0px;
+}
+
+#sign-form .input--text {
+    width: 100%;
+    height: 40px;
+}
+
+#sign-form .caption {
+    font-size: 12px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    text-align: center;
+}
+
+#sign-form [type='submit'] {
+    /* form 태그에는 하나의 submit만 올수 있으므로 고유한 특성과 같음 */
+    width: 100%;
+    height: 62px;
+    padding: 0 25px;
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Feature Style */
+.section--feature {
+    background: #f5f5f5;
+    padding-top: 66px;
+}
+.section--feature .summary {
+    max-width: 820px;
+    margin: 0 auto; /* 반드시 가로너비가 정의되어 있어야함 */
+    text-align: center;
+}
+.section--feature .video {
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+.section--feature .video .video-ratio {
+    height: 0;
+    padding-top: 56.25%;
+    position: relative;
+}
+
+.section--feature .video .video-ratio iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.section--feature .tiles {
+    border-top: 2px solid #e5e5e5;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.section--feature .tiles .inner {
+    max-width: 1200px;
+}
+.section--feature .tiles ul {
+    /* 해당 grid 분할은 고버전의 브라우져에서만 가능하므로 수정되어야 함
+     * display: grid;
+     * grid-template-columns: repeat(4, 1fr);  1:1 비율로 4개의 칼럼 생성 */
+}
+.section--feature .tiles li {
+    padding: 34px 24px;
+    text-align: center;
+    line-height: 1.5;
+    border-right: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    float: left; /* float 속성을 부여한 경우 부모에는 반드시 clearfix 속성을 부여해줘야 함 */
+    width: 25%; /* %로 치수를 부여하는 경우 반드시 box-sizing: border-box로 정의해줘야 함 */
+}
+
+.section--feature .tiles li:last-child {
+    border-right: none;
+}
+
+.section--feature .tiles li img {
+    max-width: 100%;
+    padding: 14px 10% 24px;
+    box-sizing: border-box; /* padding에 의해 요소가 line 밖으로 커지는걸 막아줌 */
+}
+
+.section--feature .tiles li h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.section--feature .tiles li p {
+    font-size: 14px;
+    color: #767676;
+}
+
+/* Where is Style */
+.section--where-is {
+}
+.section--where-is .inner {
+    padding-top: 80px;
+}
+#map {
+    width: 100%;
+    height: 400px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* padding or border 속성을 부여하는 경우 */
+}
+
+/* Pricing Card Style */
+.section--pricing {
+    background: linear-gradient(#f5f5f5, #fff);
+}
+.section--pricing .inner {
+    padding: 80px;
+}
+.section--pricing .card {
+    display: flex;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.section--pricing .card .cell {
+    padding: 24px;
+    display: flex; /* 요소안의 내용이 정중에 배치됨 */
+    justify-content: center;
+    align-items: center;
+}
+.section--pricing .card .cell1 .btn {
+    height: 50px;
+    font-size: 16px;
+}
+.section--pricing .card .cell2 {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    flex-grow: 1; /* flex : 1 0; 으로 속성을 한번에 부여가능함 */
+    flex-basis: 0;
+    border-left: 1px solid #e5e5e5;
+}
+
+/* Footer Style */
+footer {
+}
+footer .inner {
+    padding: 50px 0;
+    border-top: 1px solid #eee;
+}
+footer .site-links {
+    display: flex;
+}
+
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+
+footer .logo {
+    position: absolute;
+    /* absolute를 기준으로 전체영역을 다 사용한다는 개념 */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; /* 4방향에 대한 마진을 auto로 설정함으로써 가운데 정렬 */
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    /* logo요소에 마우스를 올리면 svg 속성은 아래와 같이 설정하겠다는 의미 */
+    fill: #4078c0;
+}
